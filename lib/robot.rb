@@ -1,9 +1,7 @@
-require 'pry'
 module TOYROBOT
   class Robot
     attr_reader :position
     def initialize
-      # @directions = RingBuffer.new(4)
       @directions = %w[NORTH EAST SOUTH WEST]
     end
     def place(position)
