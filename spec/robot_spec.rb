@@ -23,4 +23,13 @@ describe TOYROBOT::Robot do
       expect{@robot.rotate('LEFT')}.to change{@robot.position[:heading]}.from('NORTH').to('WEST')
     end
   end
+
+  describe '#report' do
+    before(:each) do
+      @robot.place({x:0,y:0,heading:'NORTH'})
+    end
+    it 'should report correct position' do
+      expect(@robot.report).to eq('0 0 NORTH')
+    end
+  end
 end
