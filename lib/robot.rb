@@ -19,7 +19,6 @@ module TOYROBOT
         when 'LEFT'
           @position[:heading] = @directions[@directions.find_index(@position[:heading]) - 1]
         else
-
       end
     end
   end
