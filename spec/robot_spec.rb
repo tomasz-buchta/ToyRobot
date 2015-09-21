@@ -33,7 +33,7 @@ describe TOYROBOT::Robot do
     end
   end
 
-  describe '#Move' do
+  describe '#move' do
     it 'should move NORTH' do
       @robot.place({x:1,y:1,heading:'NORTH'})
       @robot.move
@@ -57,5 +57,35 @@ describe TOYROBOT::Robot do
       @robot.move
       expect(@robot.position).to eq({x:0,y:1,heading:'WEST'})
     end
+    describe 'private' do
+      describe '#in_bounds?' do
+
+        it 'should be true for valid lower bound position' do
+          expect(@robot.send(:in_bounds?,{x:0,y:0,heading:'NORTH'})).to be(true)
+        end
+
+        it 'should be true for valid upper bound position' do
+          expect(@robot.send(:in_bounds?,{x:4,y:4,heading:'NORTH'})).to be(true)
+        end
+
+        it 'should be false for x < 0' do
+          expect(@robot.send(:in_bounds?,{x:-1,y:2,heading:'NORTH'})).to be(false)
+        end
+
+        it 'should be false for x > 4' do
+          expect(@robot.send(:in_bounds?,{x:5,y:2,heading:'NORTH'})).to be(false)
+        end
+
+        it 'should be false for y < 0' do
+          expect(@robot.send(:in_bounds?,{x:1,y:-1,heading:'NORTH'})).to be(false)
+        end
+
+        it 'should be false for x < 4' do
+          expect(@robot.send(:in_bounds?,{x:1,y:5,heading:'NORTH'})).to be(false)
+        end
+
+      end
+    end
+
   end
 end

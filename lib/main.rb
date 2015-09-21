@@ -3,8 +3,6 @@ require 'require_all'
 require_all 'lib'
 
 module TOYROBOT
-  TABLE_DIMENSION = 5
-
   class Main
 
     def initialize
