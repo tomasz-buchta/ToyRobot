@@ -9,6 +9,10 @@ describe TOYROBOT::Robot do
       robot.place({x:0,y:0,heading:'NORTH'})
       expect(robot.position).to eq({x:0,y:0,heading:'NORTH'})
     end
+
+    it 'should not place robot outside of table' do
+      expect{robot.place({x:-1,y:0,heading:'NORTH'})}.to_not change{robot.position}
+    end
   end
 
   describe '#rotate' do
