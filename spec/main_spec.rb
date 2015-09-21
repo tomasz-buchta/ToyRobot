@@ -1,10 +1,10 @@
 require 'rspec'
 
 describe TOYROBOT::Main do
-  describe '.parse_cmd' do
+  describe '#parse_cmd' do
     let(:main) {TOYROBOT::Main.new}
 
-    describe 'PLACE' do
+    describe 'when PLACE' do
       before(:each) {@robot = main.instance_variable_get(:@robot)}
       it 'should call the place with appropriate arguments' do
         expect(@robot).to receive(:place).with({x:0,y:0,heading:'NORTH'})
@@ -18,7 +18,7 @@ describe TOYROBOT::Main do
       end
     end
 
-    describe 'ROTATE' do
+    describe 'when ROTATE' do
       it 'should call the rotate with RIGHT' do
         expect(main.instance_variable_get(:@robot)).to receive(:rotate).with('RIGHT')
         main.parse_cmd('RIGHT')
@@ -35,7 +35,7 @@ describe TOYROBOT::Main do
       end
     end
 
-    describe 'MOVE' do
+    describe 'when MOVE' do
       it 'should call move' do
         expect(main.instance_variable_get(:@robot)).to receive(:move)
         main.parse_cmd('MOVE')
