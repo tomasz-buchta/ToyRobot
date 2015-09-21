@@ -23,11 +23,16 @@ module TOYROBOT
     end
 
     def move
+      old_position = @position
       case @position[:heading]
         when 'NORTH'
+          @position[:y] = old_position[:y] + 1
         when 'SOUTH'
+          @position[:y] = old_position[:y] - 1
         when 'EAST'
+          @position[:x] = old_position[:x] + 1
         when 'WEST'
+          @position[:x] = old_position[:x] - 1
         else
       end
     end

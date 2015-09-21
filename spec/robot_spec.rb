@@ -32,4 +32,30 @@ describe TOYROBOT::Robot do
       expect(@robot.report).to eq('0 0 NORTH')
     end
   end
+
+  describe '#Move' do
+    it 'should move NORTH' do
+      @robot.place({x:1,y:1,heading:'NORTH'})
+      @robot.move
+      expect(@robot.position).to eq({x:1,y:2,heading:'NORTH'})
+    end
+
+    it 'should move SOUTH' do
+      @robot.place({x:1,y:1,heading:'SOUTH'})
+      @robot.move
+      expect(@robot.position).to eq({x:1,y:0,heading:'SOUTH'})
+    end
+
+    it 'should move EAST' do
+      @robot.place({x:1,y:1,heading:'EAST'})
+      @robot.move
+      expect(@robot.position).to eq({x:2,y:1,heading:'EAST'})
+    end
+
+    it 'should move WEST' do
+      @robot.place({x:1,y:1,heading:'WEST'})
+      @robot.move
+      expect(@robot.position).to eq({x:0,y:1,heading:'WEST'})
+    end
+  end
 end
