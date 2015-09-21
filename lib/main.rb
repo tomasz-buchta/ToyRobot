@@ -26,12 +26,7 @@ module TOYROBOT
             puts 'Wrong argument'
           end
         when 'LEFT','RIGHT'
-          begin
-            raise ArgumentError unless  %w[RIGHT LEFT].include? cmd
-            @robot.rotate(cmd)
-          rescue ArgumentError
-            puts 'Wrong argument'
-          end
+          @robot.rotate(cmd)
         when 'MOVE'
           @robot.move
         else
