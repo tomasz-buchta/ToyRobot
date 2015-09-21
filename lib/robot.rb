@@ -27,7 +27,7 @@ module TOYROBOT
     end
 
     def move
-      old_position = @position
+      old_position = @position.clone
       case @position[:heading]
         when 'NORTH'
           @position[:y] = old_position[:y] + 1
@@ -39,6 +39,7 @@ module TOYROBOT
           @position[:x] = old_position[:x] - 1
         else
       end
+
       @position = old_position unless in_bounds? @position
     end
 

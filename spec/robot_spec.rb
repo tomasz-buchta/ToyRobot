@@ -57,6 +57,27 @@ describe TOYROBOT::Robot do
       robot.move
       expect(robot.position).to eq({x:0,y:1,heading:'WEST'})
     end
+
+    it 'should not move out of board' do
+      robot.place({x:4,y:4,heading:'NORTH'})
+      expect{robot.move}.to_not change{robot.position[:y]}
+    end
+
+    it 'should not move out of board' do
+      robot.place({x:4,y:4,heading:'EAST'})
+      expect{robot.move}.to_not change{robot.position[:x]}
+    end
+
+    it 'should not move out of board' do
+      robot.place({x:0,y:0,heading:'SOUTH'})
+      expect{robot.move}.to_not change{robot.position[:y]}
+    end
+
+    it 'should not move out of board' do
+      robot.place({x:0,y:0,heading:'WEST'})
+      expect{robot.move}.to_not change{robot.position[:x]}
+    end
+
     describe 'private' do
       describe '#in_bounds?' do
 
