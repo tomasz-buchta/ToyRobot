@@ -1,9 +1,9 @@
 require 'rspec'
 
-describe 'My behaviour' do
+describe TOYROBOT::Table do
 
-  it 'should do something' do
-
-    true.should == false
-  end
+  # it 'should do something' do
+  #
+  #   true.should == false
+  # end
 end

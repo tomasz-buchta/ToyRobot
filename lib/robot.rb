@@ -21,5 +21,15 @@ module TOYROBOT
         else
       end
     end
+
+    def move
+      case @position[:heading]
+        when 'NORTH'
+        when 'SOUTH'
+        when 'EAST'
+        when 'WEST'
+        else
+      end
+    end
   end
 end

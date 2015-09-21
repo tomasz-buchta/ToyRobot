@@ -14,10 +14,11 @@ module TOYROBOT
     def parse_cmd(input)
       directions = %w[NORTH EAST SOUTH WEST]
       cmd = input.split(' ')[0]
-      args = input.split(' ')[1].split(',')
+
       case cmd
         when 'PLACE'
           begin
+            args = input.split(' ')[1].split(',')
             x = Integer(args[0])
             y = Integer(args[1])
             throw ArgumentError unless directions.include? args[2].upcase
@@ -26,13 +27,15 @@ module TOYROBOT
           rescue ArgumentError
             puts 'Wrong argument'
           end
-        when 'ROTATE'
+        when 'LEFT','RIGHT'
           begin
-            throw ArgumentError unless  %w[RIGHT LEFT].include? args.first
-            @robot.rotate(args.first)
+            raise ArgumentError unless  %w[RIGHT LEFT].include? cmd
+            @robot.rotate(cmd)
           rescue ArgumentError
             puts 'Wrong argument'
           end
+        when 'MOVE'
+          @robot.move
         else
       end
     end
