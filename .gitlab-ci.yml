@@ -1,2 +1,5 @@
+image: ruby:2.2
+before_script:
+  - bundle_install
 job1:
-  script: "execute-script-for-job1"
+  script: "rspec"
