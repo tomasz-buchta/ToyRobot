@@ -13,7 +13,7 @@ module TOYROBOT
     end
 
     def report
-      "#{@position[:x]} #{@position[:x]} #{@position[:heading]}"
+      "#{@position[:x]} #{@position[:y]} #{@position[:heading]}"
     end
 
     def rotate(direction)
