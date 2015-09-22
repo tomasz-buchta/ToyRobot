@@ -29,6 +29,8 @@ module TOYROBOT
           @robot.rotate(cmd)
         when 'MOVE'
           @robot.move
+        when 'REPORT'
+          @robot.report
         else
       end
     end
