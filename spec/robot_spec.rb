@@ -16,71 +16,114 @@ describe TOYROBOT::Robot do
   end
 
   describe '#rotate' do
-    before(:each) do
-      robot.place({x:0,y:0,heading:'NORTH'})
-    end
-    it 'should rotate RIGHT from NORTH to EAST' do
-      expect{robot.rotate('RIGHT')}.to change{robot.position[:heading]}.from('NORTH').to('EAST')
+
+    describe 'robot not placed' do
+
+      it 'should not throw exception' do
+        expect{robot.rotate('RIGHT')}.to_not raise_exception
+      end
+
     end
 
-    it 'should rotate LEFT from NORTH to WEST' do
-      expect{robot.rotate('LEFT')}.to change{robot.position[:heading]}.from('NORTH').to('WEST')
+    describe 'robot placed' do
+
+      before(:each) do
+        robot.place({x:0,y:0,heading:'NORTH'})
+      end
+
+      it 'should rotate RIGHT from NORTH to EAST' do
+        expect{robot.rotate('RIGHT')}.to change{robot.position[:heading]}.from('NORTH').to('EAST')
+      end
+
+      it 'should rotate LEFT from NORTH to WEST' do
+        expect{robot.rotate('LEFT')}.to change{robot.position[:heading]}.from('NORTH').to('WEST')
+      end
+
     end
+
   end
 
   describe '#report' do
-    before(:each) do
-      robot.place({x:0,y:0,heading:'NORTH'})
+
+    describe 'robot not placed' do
+
+      it 'should not throw exception' do
+        expect{robot.report}.to_not raise_exception
+      end
+
     end
-    it 'should report correct position' do
-      expect(robot.report).to eq('0 0 NORTH')
+
+    describe 'robot placed' do
+
+      before(:each) do
+        robot.place({x:0,y:0,heading:'NORTH'})
+      end
+
+      it 'should report correct position' do
+        expect(robot.report).to eq('0 0 NORTH')
+      end
+
     end
   end
 
   describe '#move' do
-    it 'should move NORTH' do
-      robot.place({x:1,y:1,heading:'NORTH'})
-      robot.move
-      expect(robot.position).to eq({x:1,y:2,heading:'NORTH'})
+
+    describe 'robot not placed' do
+
+      it 'should not throw exception' do
+        expect{robot.move}.to_not raise_exception
+      end
+
     end
 
-    it 'should move SOUTH' do
-      robot.place({x:1,y:1,heading:'SOUTH'})
-      robot.move
-      expect(robot.position).to eq({x:1,y:0,heading:'SOUTH'})
+    describe 'robot placed' do
+
+      it 'should move NORTH' do
+        robot.place({x:1,y:1,heading:'NORTH'})
+        robot.move
+        expect(robot.position).to eq({x:1,y:2,heading:'NORTH'})
+      end
+
+      it 'should move SOUTH' do
+        robot.place({x:1,y:1,heading:'SOUTH'})
+        robot.move
+        expect(robot.position).to eq({x:1,y:0,heading:'SOUTH'})
+      end
+
+      it 'should move EAST' do
+        robot.place({x:1,y:1,heading:'EAST'})
+        robot.move
+        expect(robot.position).to eq({x:2,y:1,heading:'EAST'})
+      end
+
+      it 'should move WEST' do
+        robot.place({x:1,y:1,heading:'WEST'})
+        robot.move
+        expect(robot.position).to eq({x:0,y:1,heading:'WEST'})
+      end
+
+      it 'should not move out of board' do
+        robot.place({x:4,y:4,heading:'NORTH'})
+        expect{robot.move}.to_not change{robot.position[:y]}
+      end
+
+      it 'should not move out of board' do
+        robot.place({x:4,y:4,heading:'EAST'})
+        expect{robot.move}.to_not change{robot.position[:x]}
+      end
+
+      it 'should not move out of board' do
+        robot.place({x:0,y:0,heading:'SOUTH'})
+        expect{robot.move}.to_not change{robot.position[:y]}
+      end
+
+      it 'should not move out of board' do
+        robot.place({x:0,y:0,heading:'WEST'})
+        expect{robot.move}.to_not change{robot.position[:x]}
+      end
+
     end
 
-    it 'should move EAST' do
-      robot.place({x:1,y:1,heading:'EAST'})
-      robot.move
-      expect(robot.position).to eq({x:2,y:1,heading:'EAST'})
-    end
-
-    it 'should move WEST' do
-      robot.place({x:1,y:1,heading:'WEST'})
-      robot.move
-      expect(robot.position).to eq({x:0,y:1,heading:'WEST'})
-    end
-
-    it 'should not move out of board' do
-      robot.place({x:4,y:4,heading:'NORTH'})
-      expect{robot.move}.to_not change{robot.position[:y]}
-    end
-
-    it 'should not move out of board' do
-      robot.place({x:4,y:4,heading:'EAST'})
-      expect{robot.move}.to_not change{robot.position[:x]}
-    end
-
-    it 'should not move out of board' do
-      robot.place({x:0,y:0,heading:'SOUTH'})
-      expect{robot.move}.to_not change{robot.position[:y]}
-    end
-
-    it 'should not move out of board' do
-      robot.place({x:0,y:0,heading:'WEST'})
-      expect{robot.move}.to_not change{robot.position[:x]}
-    end
 
     describe 'private' do
       describe '#in_bounds?' do

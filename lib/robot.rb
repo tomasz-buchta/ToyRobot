@@ -3,9 +3,11 @@ module TOYROBOT
 
   class Robot
     attr_reader :position
+
     def initialize
       @directions = %w[NORTH EAST SOUTH WEST]
     end
+
     def place(position)
       old_position = @position
       @position = position
@@ -13,10 +15,12 @@ module TOYROBOT
     end
 
     def report
+      return if @position.nil?
       "#{@position[:x]} #{@position[:y]} #{@position[:heading]}"
     end
 
     def rotate(direction)
+      return if @position.nil?
       case direction
         when 'RIGHT'
           @position[:heading] = @directions[@directions.find_index(@position[:heading]) + 1]
@@ -27,6 +31,7 @@ module TOYROBOT
     end
 
     def move
+      return if @position.nil?
       old_position = @position.clone
       case @position[:heading]
         when 'NORTH'
