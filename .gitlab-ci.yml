@@ -1,0 +1,2 @@
+job1:
+  script: "execute-script-for-job1"
