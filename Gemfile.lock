@@ -36,6 +36,7 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
+    rake (10.4.2)
     rb-fsevent (0.9.6)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -68,6 +69,7 @@ PLATFORMS
 DEPENDENCIES
   guard-rspec
   pry-rails
+  rake
   require_all
   rspec
   simplecov
